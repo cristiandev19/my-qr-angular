@@ -1,14 +1,5 @@
-<h1>Hola desde el login</h1>
 
-
-<mat-nav-list>
-  <a mat-list-item routerLink="/home">
-    <mat-icon mat-list-icon>person</mat-icon>
-    <h4 mat-line >Home</h4>
-  </a>
-</mat-nav-list>
-
-<form [formGroup]="loginForm">
+<form [formGroup]="loginForm" class="login-form">
   <mat-form-field class="example-full-width">
     <mat-label>Email</mat-label>
     <input type="text" matInput formControlName="email">
@@ -23,7 +14,11 @@
 
   <mat-form-field class="example-full-width">
     <mat-label>Password</mat-label>
-    <input type="text" matInput formControlName="password">
+    <input [type]="showPassword ? 'text' : 'password'" matInput formControlName="password">
+    <mat-icon matSuffix (click)="showPassword = !showPassword">
+      {{ showPassword ? 'visibility' : 'visibility_off'}}
+    </mat-icon>
+
     <!-- <mat-hint>Errors appear instantly!</mat-hint>
     <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
       Please enter a valid email address

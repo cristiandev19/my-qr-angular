@@ -12,6 +12,7 @@ export interface ILoginForm {
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  showPassword: boolean = false;
 
   constructor(
     private fb: FormBuilder
