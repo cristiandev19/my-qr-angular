@@ -1,4 +1,15 @@
+:host {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
 .login-form {
   display: flex;
   flex-direction: column;
+  margin: auto;
+  width: 70%;
+  background-color: white;
 }
+
+
