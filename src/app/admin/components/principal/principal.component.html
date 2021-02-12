@@ -1,3 +1,21 @@
 
 
 <h1>Admin principal</h1>
+
+<p>
+  Aqui sera la parte donde se agregara la foto
+</p>
+
+<img [src]="image.url" height="200"> <br/>
+<input type='file' (change)="onSelectFile($event)">
+
+
+
+<form>
+  <mat-form-field class="example-full-width">
+    <mat-label>Email</mat-label>
+    <input type="text" matInput [formControl]="fileName">
+  </mat-form-field>
+
+  <button mat-raised-button (click)="handleSendImage()">Enviar</button>
+</form>
