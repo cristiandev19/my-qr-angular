@@ -55,7 +55,7 @@ export class PrincipalComponent implements OnInit {
       fileName
     };
     console.log('obj', obj);
-    return ;
+    // return ;
     this.adminSrv.uploadImage(obj).subscribe(res => {
       console.log('res', res);
     }, err => {
