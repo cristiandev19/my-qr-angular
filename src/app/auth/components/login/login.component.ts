@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { AuthService } from '../../auth.service';
+import { ILogin } from '../../models/auth.model';
 
-export interface ILoginForm {
-  email: string;
-  password: string;
-}
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,7 +14,8 @@ export class LoginComponent implements OnInit {
   showPassword: boolean = false;
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private authSrv: AuthService
   ) {
     this.loginForm = this.createForm();
   }
@@ -31,8 +31,20 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void { }
 
   handleLogin() {
-    const form = this.loginForm.value as ILoginForm;
+    const form = this.loginForm.value as ILogin;
 
     console.log({form})
+    // authSrv
+    this.authSrv.emailLogin(form).subscribe((res: any) => {
+      console.log('res', res);
+      this.authSrv.setLocalStorage(res);
+    }, err => {
+      console.warn({err});
+    })
+
+  }
+
+  protected() {
+
   }
 }
