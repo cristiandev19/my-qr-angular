@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { ILogin } from '../../models/auth.model';
 
@@ -15,15 +16,16 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authSrv: AuthService
+    private authSrv: AuthService,
+    private router: Router
   ) {
     this.loginForm = this.createForm();
   }
 
   createForm(): FormGroup {
     const obj = {
-      email: [''],
-      password: ['']
+      email    : ['', [Validators.required]],
+      password : ['', [Validators.required]]
     }
     return this.fb.group(obj);
   }
@@ -38,6 +40,8 @@ export class LoginComponent implements OnInit {
     this.authSrv.emailLogin(form).subscribe((res: any) => {
       console.log('res', res);
       this.authSrv.setLocalStorage(res);
+      this.router.navigate(['/admin/principal']);
+
     }, err => {
       console.warn({err});
     })
@@ -45,6 +49,12 @@ export class LoginComponent implements OnInit {
   }
 
   protected() {
-
+    console.log('login');
+    this.router.navigate(['/admin/principal']);
+    this.authSrv.protected().subscribe((res: any) => {
+      console.log('protected', res);
+    }, (err: any) => {
+      console.log('err', err);
+    });
   }
 }
