@@ -32,6 +32,11 @@ export class AuthService {
     return actualTime < new Date(this.getExpiration());
   }
 
+  public haveToken() {
+    const token = localStorage.getItem('id_token');
+    return !!token;
+  }
+
   isLoggedOut() {
     return !this.isLoggedIn();
   }
@@ -47,11 +52,11 @@ export class AuthService {
   }
 
   emailSignup(obj: IEmailSignup) {
-    this.http.post(`${this.URL_SERVICE}/auth/email-signup`, obj, { headers: this.headers });
+    return this.http.post(`${this.URL_SERVICE}/auth/email-signup`, obj, { headers: this.headers });
   }
 
   protected() {
-    this.http.get(`${this.URL_SERVICE}/auth/protected`, { headers: this.headers });
+    return this.http.get(`${this.URL_SERVICE}/auth/protected`, { headers: this.headers });
   }
 
 }
