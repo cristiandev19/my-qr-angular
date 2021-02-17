@@ -29,7 +29,7 @@ export class AuthService {
 
   public isLoggedIn() {
     const actualTime = new Date();
-    return actualTime < new Date(this.getExpiration());
+    return actualTime.getTime() < this.getExpiration();
   }
 
   public haveToken() {
@@ -42,9 +42,11 @@ export class AuthService {
   }
 
   getExpiration() {
-    const expiration : string = localStorage.getItem('expires_at') || '';
-    const expiresAt = JSON.parse(expiration);
-    return +expiresAt;
+    console.log('expiration')
+    const expiration : string = localStorage.getItem('expires_at') || '0';
+    console.log('expiration2', expiration)
+    // const expiresAt = JSON.parse(expiration);
+    return +expiration;
   }
 
   emailLogin(obj: ILogin) {
