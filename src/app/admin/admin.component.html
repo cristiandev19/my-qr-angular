@@ -13,10 +13,10 @@
         <mat-icon mat-list-icon>assignment</mat-icon>
         <h4 mat-line *ngIf="isExpanded">Principal</h4>
       </a>
-      <button mat-list-item>
-        <mat-icon mat-list-icon>assignment</mat-icon>
+      <a mat-list-item (click)="handleLogout()">
+        <mat-icon mat-list-icon>logout</mat-icon>
         <h4 mat-line *ngIf="isExpanded">Cerrar sesion</h4>
-      </button>
+      </a>
     </mat-nav-list>
   </mat-drawer>
 
