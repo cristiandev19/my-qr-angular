@@ -57,4 +57,9 @@ export class LoginComponent implements OnInit {
       console.log('err', err);
     });
   }
+
+  goToSignup() {
+    console.log('goToSignup');
+    this.router.navigate(['/auth/register']);
+  }
 }
